@@ -158,6 +158,23 @@ E em seguida criar um novo repositório Git:
 ```bash
 git init
 ```
+#### Remoto
+
+Para adicionar um repositório remoto:
+
+```bash
+git remote add <name> <uri>
+```
+
+### Fetch
+
+Para trazer informações do remoto para o local:
+
+```bash
+git fetch
+```
+
+**NÃO RETORNA OS COMMITS**
 
 ### Status
 
@@ -186,8 +203,46 @@ git add <arquivo>
 
 Depois de definir os arquivos é possível realizar o commit. O commit é uma forma de salvar o estado atual de um repositório e rastrear alterações no projeto. Um commit é marcado por uma mensagem que descreve as mudanças realizadas no commit.
 
+
 ```bash
 git commit -m "message"
+```
+
+### Push
+
+O comando push manda as mudanças locais para o remoto:
+
+```bash
+git push origin main
+```
+
+### Pull
+
+O comando pull é utilizado para retornar as mudanças nos arquivos do repositório remoto:
+
+```bash
+git pull [<remote>/<branch>]
+```
+
+### Pull Request
+
+Um pull request é uma maneira de propor alterações, permitindo a visualização das mudanças pelos colaboradores antes de ser realizado um merge para a main.
+
+### Reset Soft
+
+O comando reset é utilizado para desfazer as ações do último commit e mudanças realizadas.
+
+O soft é útil quando é desejado retornar para um commit prévio porém mantendo as alterações realizadas prontas para serem definidas.
+```bash
+git reset --soft <hash>
+```
+
+### Reset Hard
+
+Para retornar para um commit e deletar todas mudanças realizadas
+
+```bash
+git reset --hard <hash>
 ```
 
 ### Git Log
@@ -226,6 +281,10 @@ Para uma visão mais compacta pode ser utilizado o **--oneline**
 git log --oneline
 ```
 
+```bash
+git log --oneline --decorate --graph --parents
+```
+
 ### Cat-File
 
 O comando **cat-file** é utilizado para a visualização do conteúdo de um commit por meio de sua hash.
@@ -261,15 +320,57 @@ Para criar uma nova branch e mudar após sua criação:
 git switch -c my_new_branch
 ```
 
+É possível criar uma nova branch com base em um commit:
+
+```bash
+git switch -c my_new_branch <hash>
+```
+
 ![alt text](image-2.png)
 
 Após criar uma nova branch ela utiliza dos commits anteriores da branch base para utilização na nova branch.
+
+### Deletar branch
+
+```bash
+git branch -d <branch>
+```
 
 ### Mudar branch
 
 Para mudar de branch:
 
 ```bash
-git switch prime
-git checkout prime
+git switch <branch>
+git checkout <branch>
 ```
+
+### Merge
+
+Um merge é a união de duas branches com base em uma branch principal com base nos commits realizados.
+
+```bash
+git merge <branch>
+```
+
+![alt text](image-4.png)
+
+### Rebase
+
+O rebase funciona de maneira semelhante ao merge porém ele mantem os commits da união das branchs não criando um novo commit como no merge.
+
+```text
+A - B - C         main
+         \
+          D - E   feature_branch
+```
+
+![alt text](image-3.png)
+
+## Repositório GitHub
+
+O GitHub é um website de hospedagem repositórios remotos para sere utilizados como backup, compartilhamento, colaboração e portfólio público.
+
+## Gitignore
+
+O arquivo gitignore define quais arquivos devem ser ignorados quando utiliza-se o Git em um diretório e não devem ser rastreadas. Podem estar localizados em diferentes níveis de um diretório.
